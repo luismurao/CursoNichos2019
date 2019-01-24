@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1548007921228.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "AF23D12E",
+    "lastKnownWriteTime" : 1548365831,
+    "last_content_update" : 1548365831455,
+    "path" : "~/Dropbox/CursoNichos2019/Intro2R.Rmd",
+    "project_path" : "Intro2R.Rmd",
+    "properties" : {
+        "cursorPosition" : "315,180",
+        "scrollLine" : "305"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

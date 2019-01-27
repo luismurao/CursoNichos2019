@@ -8,7 +8,7 @@ library(knitr)
 
 
 ## ------------------------------------------------------------------------
-set.seed(111)
+set.seed(112)
 
 ## ------------------------------------------------------------------------
 libro <- "En las montañas de la locura"
@@ -127,6 +127,9 @@ f[1]
 (f1 <- f[c(1,3,4)])
 
 ## ------------------------------------------------------------------------
+1:10
+
+## ------------------------------------------------------------------------
 seq(from =0,to = 10,by = 2)
 
 ## ------------------------------------------------------------------------
@@ -139,7 +142,8 @@ seq(13,25,length.out=tamano)
 
 ## ------------------------------------------------------------------------
 vec <- c("A","B")
-rep(vec, 2)
+rep(vec, times=2)
+rep(vec,each=2)
 
 ## ------------------------------------------------------------------------
 vec <- 1:1000
@@ -147,11 +151,8 @@ sample(x = vec,size = 100,replace = FALSE)
 
 
 ## ------------------------------------------------------------------------
-# logitudes posibles de nuestro vector l
-tamanos <- 1:30
-# tamaño de l
-tamano_l <- sample(tamanos,size = 1)
-l <- seq(1,5,length.out = tamano_l)
+l <- seq(0,1,by=0.0025)
+print(l)
 # La longitud de l
 length(l)
 
@@ -161,9 +162,14 @@ mat <- matrix(elementos,nrow = 4,ncol = 4)
 print(mat)
 
 ## ------------------------------------------------------------------------
+mat_reng <- matrix(elementos,nrow = 4,ncol = 4,byrow = T)
+print(mat_reng)
+
+## ------------------------------------------------------------------------
 # Matriz tipo cadena
 letras <- LETTERS[1:9]
-mat_carac <- matrix(letras,ncol=3,nrow = 3)
+mat_carac <- matrix(letras,ncol=3,nrow = 3,byrow = F)
+print(mat_carac)
 
 ## ------------------------------------------------------------------------
 letras_b <- LETTERS[1:8]
@@ -179,7 +185,7 @@ M <- matrix(dats,nrow = 6,ncol = 8,byrow = TRUE)
 print(M[3,6])
 
 ## ------------------------------------------------------------------------
-print(M[2,])
+print(M[2, ])
 
 ## ------------------------------------------------------------------------
 print(M[,3])
@@ -191,11 +197,12 @@ print(M[1:3,c(1,2)])
 
 ## ------------------------------------------------------------------------
 print(M[c(1,2,3,4,5),c(1,5)])
+print(M[1:5,c(1,5)])
 
 ## ------------------------------------------------------------------------
 pollito_id <- 1:75
 lote <- paste0("L",rep(1:5,each=15))
-peso_inicial <- runif(75,min = 8,12)
+peso_inicial <- runif(75,min = 8,max = 12)
 pollitos <- data.frame(pollito_id,lote,peso_inicial)
 
 ## ----eval=F--------------------------------------------------------------
@@ -225,10 +232,17 @@ pollitos$peso_dieta <- pesos_dietas
 library(knitr)
 kable(pollitos[c(1:3,21:23,31:33,51:53,71:73),])
 
+print(pollitos[c(1:3,21:23,31:33,51:53,71:73),c(1,4)])
+
+dim(pollitos)
 ## ------------------------------------------------------------------------
 pollitos[1:10,c("Dieta")]
+names(pollitos)
+
+pollitos[5:75,c("peso_inicial","Dieta","peso_dieta")]
 
 ## ------------------------------------------------------------------------
+pollitos$Dieta
 pollitos$Dieta[1:10]
 
 ## ------------------------------------------------------------------------
@@ -256,9 +270,9 @@ lista[["pollitos_df"]]
 # El elemento de lista que a la sublista que contiene al vector objetivo es el 3
 # Esta sublista esta contituida por un solo elemento el cual es el vector a
 # El elemento del vector a que nos interesa es el 10
-indice_nivel_1 <- 3
+indice_nivel_1 <- 2
 indice_nivel_2 <- 1
-indice_nivel_3 <- 10
+indice_nivel_3 <- 5
 lista[[indice_nivel_1]][[indice_nivel_2]][[indice_nivel_3]]
 
 ## ------------------------------------------------------------------------
@@ -272,6 +286,8 @@ lista
 ## ------------------------------------------------------------------------
 lista$nuevo_elem_2 <- rbinom(30,size = 1,prob = 0.5)
 lista
+
+setwd("~/Dropbox/CursoNichos2019/")
 
 ## ------------------------------------------------------------------------
 df_csv <- read.csv("Arichivos_01Intro/data_Clean.csv")
@@ -294,6 +310,8 @@ head(d[,5:7])
 library(gdata)
 d_xls <- read.xls("Arichivos_01Intro/data_Clean.xlsx",sheet = 1)
 head(d_xls)
+d_occs <- read.xls("Arichivos_01Intro/data_Clean.xlsx",sheet = 2)
+
 
 ## ------------------------------------------------------------------------
 library(XLConnect)
@@ -303,7 +321,8 @@ getSheets(lib_xls)
 # Cargar una hoja
 d_xlsC <- readWorksheet(object = lib_xls,sheet = "ROC")
 head(d_xlsC)
-
+d_xlsOCCs <- readWorksheet(object = lib_xls,sheet = "OCCS")
+head(d_xlsOCCs)
 
 ## ----eval=FALSE----------------------------------------------------------
 ## if (condicion) {
@@ -369,14 +388,14 @@ for(n in vec_num){
 
 ## ----eval=FALSE----------------------------------------------------------
 ## # Iteramos sobre los elementos de vec_num
-## vec_size <- length(vec_num)
-## for(iterador in 1:vec_size){
-##   n <- vec_num[iterador]
-##    if(n %% 2 == 0)
-##     cat(n,"Es par\n")
-##   else
-##     cat(n, "No es par\n")
-## }
+ vec_size <- length(vec_num)
+ for(iterador in 1:vec_size){
+   n <- vec_num[iterador]
+    if(n %% 2 == 0)
+     cat(n,"Es par\n")
+   else
+     cat(n, "No es par\n")
+ }
 
 ## ------------------------------------------------------------------------
 vec_pares <- NULL
@@ -409,11 +428,11 @@ cat("El numero de enteros pares en vec_num fue de",length(vec_pares_limpio),"\n"
 cat("El numero de enteros impares en vec_num fue de",length(vec_impares_limpio),"\n")
 
 ## ------------------------------------------------------------------------
-# Con n=3
+# Con n=2
 fib_n_menos2 <- 0
 fib_n_menos1 <- 1
-fibonacci <- c(fib_n_menos2,fib_n_menos1)
 fib_n <- fib_n_menos1 + fib_n_menos2 
+fibonacci <- c(fib_n_menos2,fib_n_menos1)
 
 
 while(fib_n < 400){
@@ -436,7 +455,7 @@ fib_n_menos1 <- 1
 fib_n <- fib_n_menos1 + fib_n_menos2 
 n=3
 
-while(fib_n < 400){
+while(fib_n < 4000000000000){
   assign(paste0("fibonacci_",n),value = fib_n) 
   fib_n_menos2 <- fib_n_menos1
   fib_n_menos1  <- fib_n
@@ -487,7 +506,7 @@ occs_df_list <- list()
 sp_names <- unique(occs_bd$name)
 
 ## ------------------------------------------------------------------------
-# Vector donde guardare los idices (vacio)
+# Vector donde guardare los indices (vacio)
 sp_index <- c()
 # Iteraremos 
 tiempo_novec <- system.time({
@@ -513,6 +532,9 @@ tiempo_novec <- system.time({
   names(occs_df_list) <- sp_names
 })
 
+print(head(occs_df_list$`Pseudacris regilla`))
+dim(occs_df_list$`Sceloporus occidentalis`)
+
 ## ------------------------------------------------------------------------
 print(tiempo_novec)
 
@@ -533,6 +555,7 @@ tiempo_vec <- system.time({
   }
 })
 names(occs_df_list_vec) <- sp_names
+dim(occs_df_list_vec$`Sceloporus occidentalis`)
 
 ## ------------------------------------------------------------------------
 print(tiempo_vec)

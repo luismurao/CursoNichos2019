@@ -1,5 +1,0 @@
-"0","pollitos <- data.frame(pollito_id,lote,peso_inicial)
-"
-"2","Error in data.frame(pollito_id, lote, peso_inicial) : 
-  object 'lote' not found
-"

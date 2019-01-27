@@ -2,6 +2,7 @@
 # Instala los paquetes que usaremos en el curso.
 # Autor: Luis Osorio-Olvera
 # Fecha: 28/01/2019
+# luismurao@gmail.com
 # Curso: Curso Online de Nichos
 
 # -----------------------------------------------------

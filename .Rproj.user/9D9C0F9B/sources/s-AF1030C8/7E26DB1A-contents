@@ -1,3 +1,0 @@
-d_h <- read.table("http://esapubs.org/archive/ecol/e090/184/PanTHERIA_1-0_WR93_Aug2008.txt", row.names=NULL)
-#d_h <- read.csv("http://esapubs.org/archive/ecol/e090/184/PanTHERIA_1-0_WR93_Aug2008.txt")
-knitr::purl("Intro2R.Rmd", output = "script_intro2R.R")

@@ -407,9 +407,9 @@ puma_occsDF_L1 <- ntbox::clean_dup(puma_occsDF,
 ## ------------------------------------------------------------------------
 
 puma_occsDF_L1$rcID<- as.character(1:nrow(puma_occsDF_L1))
-map %>% leaflet::addMarkers(lng =  puma_occsDF_L1$longitude,
-                            lat = puma_occsDF_L1$latitude,
-                            popup = puma_occsDF_L1$rcID)
+map %>% leaflet::addCircleMarkers(lng =  puma_occsDF_L1$longitude,
+                                  lat = puma_occsDF_L1$latitude,
+                                  popup = puma_occsDF_L1$rcID)
 
 #' 
 #' 
@@ -419,9 +419,9 @@ map %>% leaflet::addMarkers(lng =  puma_occsDF_L1$longitude,
 ## ------------------------------------------------------------------------
 d_raros <- c(791,1367,966)
 puma_occsDF_L2 <- puma_occsDF_L1[-d_raros ,]
-map %>% leaflet::addMarkers(lng =  puma_occsDF_L2$longitude,
-                            lat = puma_occsDF_L2$latitude,
-                            popup = puma_occsDF_L2$rcID)
+map %>% leaflet::addCircleMarkers(lng =  puma_occsDF_L2$longitude,
+                                  lat = puma_occsDF_L2$latitude,
+                                  popup = puma_occsDF_L2$rcID)
 
 #' 
 #' Escribimos nuestra tabla de datos 
@@ -474,7 +474,8 @@ map %>% leaflet::addCircleMarkers(lng =  jaguar_mexDF$longitude,
 #' 
 #' ## Un ejemplo de programación funcional con `purrr`
 #' 
-#' 
+#'     - http://tagteam.harvard.edu/hub_feeds/1981/feed_items/499711
+
 #' - Leer la base de datos de reptiles y anfibios
 #'     - Partir el `data.frame` por especie.
 #'     - Crear polígnos mínimos convexos de los registros. 
@@ -483,6 +484,7 @@ map %>% leaflet::addCircleMarkers(lng =  jaguar_mexDF$longitude,
 #'     - Buscar los datos de gbif usando polígonos.
 #'     - Limpiar los duplicados espaciales.
 #'     - Regresar el raster y los puntos de gbif.
+#'      
 #'     
 ## ----eval=TRUE-----------------------------------------------------------
 library(magrittr)

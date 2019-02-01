@@ -7,7 +7,6 @@ library(knitr)
 library(rgl)
 library(maptools)
 data("wrld_simpl")
-knit_hooks$set(webgl = hook_webgl)
 
 #' 
 #' ### Resumen

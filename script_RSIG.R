@@ -47,7 +47,8 @@ data("wrld_simpl")
 #' ### Asignar el directorio de trabajo
 #' 
 ## ----eval=FALSE----------------------------------------------------------
-## setwd("~/Dropbox/CursoNichos2019")
+
+setwd("~/Dropbox/CursoNichos2019")
 
 #' 
 #' 
@@ -173,7 +174,7 @@ sp_DF_en_poli_extract <- SpatialPointsDataFrame(data_en_poli_extract_df[,c("long
 
 #' 
 ## ----mapll, cache=TRUE---------------------------------------------------
-knitr::kable(head(sp_DF_en_poli_extract@data))
+head(sp_DF_en_poli_extract@data)
 #plot(map_vec)
 #cols <- unique(as.numeric(sp_DF_en_poli_extract@data$ENTIDAD))
 #color_fun <- function(x) return()
@@ -314,6 +315,16 @@ plot(puebla_ras_forma,add=T)
 ## ------------------------------------------------------------------------
 stack_df <- data.frame(rasterToPoints(puebla_ras_forma))
 head(stack_df)
+
+### Convertir a raster un `data.frame`
+#' 
+## ------------------------------------------------------------------------
+
+coordinates(stack_df) <- ~x+y
+gridded(stack_df) <- TRUE
+bio1 <- raster(stack_df[1])
+plot(bio1)
+
 
 #' 
 #' 
